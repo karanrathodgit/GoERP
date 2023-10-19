@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Registration</title>
+  <link rel="stylesheet" href="{% static 'projects_module/registration.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    
+</head>
+<body>
+  <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <a style="text-decoration:none" href="{% url 'home:dashboard' %}"><h3> Go <span>ERP</span></h3></a>
+      </div>
+      <div class="right_area">
+        <a href="#" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+        <a href="{% url 'design_module:design_home' %}"><i class="fas fa-cogs"></i><span>DESIGN</span></a>
+        <a href="#"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+        
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        
+        <h4>MODULES</h4>
+      </div>
+      <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+      <a href="{% url 'design_module:design_home' %}"><i class="fas fa-cogs"></i><span>DESIGN</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+      
+    </div>
+    <!--sidebar end-->
+    <div class="content">
+      <div>
+        <h1 style="border: solid;text-align: center;">
+          <div>Projects List</div>
+        </h1>
+      </div>
+      <a href="{% url 'projects_module:registration' %}"><button>ADD Project</button></a>
+      <br>
+      
+      <div>
+        <br>
+        
+        <table>
+          <tr>
+            <th>Project Name</th>
+            <th>Client</th>
+            <th>PO NUMBER</th>
+            <th>WO NUMBER</th>
+            <th>Estimated Cost</th>
+            <th>Delivery Date</th>
+            
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        {% for item in project_list %}
+        
+          <tr>
+            <td>{{item.project_name}}</td>
+            <td>{{item.client_name}}</td>
+            <td>{{item.PO_number}}</td>
+            <td>{{item.wo_number}}</td>
+            <td>{{item.projected_cost}}</td>
+            <td>{{item.cdd}}</td>
+            
+            <td><a href="{% url 'projects_module:edit_view' item.id %}"><button>EDIT</button></a></td>
+            <td><a href="{% url 'projects_module:delete_view' item.id %}"><button>DELETE</button></a></td>
+          </tr>
+        
+          
+        {% endfor %}
+        </table>
+      </div>
+      
+    </div>
+    
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+</body>
+</html>

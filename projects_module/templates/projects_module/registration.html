@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Registration</title>
+  <link rel="stylesheet" href="{% static 'projects_module/registration.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  
+</head>
+<body>
+  <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <a style="text-decoration:none" href="{% url 'home:dashboard' %}"><h3> Go <span>ERP</span></h3></a>
+      </div>
+      <div class="right_area">
+        <a href="#" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+        <a href="{% url 'design_module:design_home' %}"><i class="fas fa-cogs"></i><span>DESIGN</span></a>
+        <a href="#"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+        
+      </div>
+    </div>
+    <!--mobile navigation bar end-->
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        
+        <h4>MODULES</h4>
+      </div>
+      <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+      <a href="{% url 'design_module:design_home' %}"><i class="fas fa-cogs"></i><span>DESIGN</span></a>
+      <a href="#"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+      
+    </div>
+    <!--sidebar end-->
+
+    <div class="content">
+      <a style="text-decoration:none" href="{% url 'projects_module:editanddelete' %}"><h1 style="border: solid; text-align: center;">Projects</h1></a>
+      <h2>Register Your New Projects Here ..</h2>
+      <br>
+      <div>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="fields">
+            <label for="project_name">Project Name : </label>
+            <input style="width: 500px" type="text" name="project_name" id="project_name" placeholder="Please entre project name " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="project_date">Project Date : </label>
+            <input style="width: 500px" type="date" name="project_date" id="project_date" placeholder="Please entre project start date " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="PO_number">PO Number : </label>
+            <input style="width: 500px" type="number" name="PO_number" id="PO_number" placeholder="Please entre purchase order number " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="client_name">Client Name : </label>
+            <input style="width: 500px" type="text" name="client_name" id="client_name" placeholder="Please entre client name " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="wo_number">Work Order Number : </label>
+            <input style="width: 500px" type="text" name="wo_number" id="wo_number" placeholder="Please entre work order number " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="projected_cost">Estimated Project Cost : </label>
+            <input style="width: 500px" type="number" name="projected_cost" id="projected_cost" placeholder="Please entre Estimated Project cost " required>
+          </div>
+          <br>
+          <div class="fields">
+            <label for="cdd">Commited Delivery Date : </label>
+            <input style="width: 500px" type="date" name="cdd" id="cdd" placeholder="Please entre CDD " required>
+          </div>
+          <br>
+          <input type="submit" >
+
+
+
+          
+        </form>
+      </div> 
+      
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+</body>
+</html>
