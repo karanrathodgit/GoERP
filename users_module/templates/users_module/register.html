@@ -1,0 +1,29 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="card">
+    <div>
+      <h1>Please Sign up here to access..</h1>
+    </div>
+    <br>
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+    
+  </div>
+  
+</div>
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DashBoard</title>
+  <link rel="stylesheet" href="{% static 'home/dashboard.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+  <style>
+    .profile_btn {
+    padding: 5px;
+    background: #19B3D3;
+    text-decoration: none;
+    float: right;
+    margin-top: -30px;
+    margin-right: 120px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+    transition-property: background;
+}
+    
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    
+</head>
+<body>
+  <input type="checkbox" id="check">
+    <!--header area start-->
+    <header>
+      <label for="check">
+        <i class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <a style="text-decoration:none" href="{% url 'home:dashboard' %}"><h3> Go <span>ERP</span></h3></a>
+      </div>
+      {% if user.is_authenticated %}
+
+          <div class="right_area" style="text-align:center;align-items: center;margin-bottom:-25px;">
+            
+            <a href="{% url 'profile' %}" class="profile_btn">Profile</a>
+          </div>
+          <div class="right_area">
+            <a href="{% url 'logout' %}" class="logout_btn">Logout</a>
+          </div>
+          
+      {% else %}
+          <div class="right_area">
+            <a href="{% url 'login' %}" class="logout_btn">Login</a>
+          </div>
+      {% endif %}
+
+    </header>
+    <!--header area end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+      <div class="nav_bar">
+        <img src="icon.png" class="mobile_profile_image" alt="">
+        <i class="fa fa-bars nav_btn"></i>
+      </div>
+      <div class="mobile_nav_items">
+        <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+        <a href="{% url 'inventory_module:resource_view' %}"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+        <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+        
+      </div>
+    </div>
+    
+    
+    <!--mobile navigation bar end-->
+
+    
+
+    <!--sidebar start-->
+    <div class="sidebar">
+      <div class="profile_info">
+        
+        <h4>MODULES</h4>
+      </div>
+      <a href="{% url 'projects_module:registration' %}"><i class="fas fa-desktop"></i><span>PROJECTS</span></a>
+      <a href="{% url 'inventory_module:resource_view' %}"><i class="fas fa-table"></i><span>INVENTORY</span></a>
+      <a href="#"><i class="fas fa-th"></i><span>ACCOUNTS</span></a>
+      
+    </div>
+    <!--sidebar end-->
+
+    <div>
+      {% if messages %}
+        {% for message in messages %}
+        <div style="color: white;">
+          {{ message }}
+        </div>
+          
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $('.nav_btn').click(function(){
+        $('.mobile_nav_items').toggleClass('active');
+      });
+    });
+    </script>
+
+</body>
+</html>

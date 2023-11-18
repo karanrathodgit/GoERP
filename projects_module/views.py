@@ -1,9 +1,11 @@
 from django.shortcuts import render,redirect
 from .models import RegistrationModel
 from .forms import RegistrationForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def registration_view(request):
     if request.method == 'POST':
         project_name = request.POST['project_name']
@@ -21,11 +23,13 @@ def registration_view(request):
     context = {}
     return render(request,'projects_module/registration.html',context)
 
+@login_required
 def editanddelete_view(request):
     project_list = RegistrationModel.objects.all()
     context = {'project_list':project_list}
     return render(request,'projects_module/editanddelete.html',context)
 
+@login_required
 def edit_view(request,id):
     edit = RegistrationModel.objects.get(pk=id)
     if request.method=='POST':
@@ -44,6 +48,7 @@ def edit_view(request,id):
 
     return redirect(request,'editanddelete.html')
 
+@login_required
 def delete_view(request,id):
 
     del_object = RegistrationModel.objects.get(pk=id)

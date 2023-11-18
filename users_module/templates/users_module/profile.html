@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+
+<div class="content">
+  <div class="card">
+    <div>
+      <h1>You are logged in as : {{ user.username }}</h1>
+    </div>
+    <br>
+    <div>
+      <img src="{{ user.profilemodel.image.url }}" width="100px" height="100px">
+    </div>
+    
+  </div>
+  
+</div>
+
+{% endblock %}
+
+<h1></h1>
